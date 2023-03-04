@@ -2,29 +2,31 @@ package com.example.demo.Model;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 @Entity
-@Table(name = "utilisateur")
-// abstract class??
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateur implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false)
     private long Id;
     private String Prénom;
     private String Nom;
     private String Adresse;
     private String téléphone;
+
+
     public Utilisateur() {
          super();
     }
+
+
     public Utilisateur(long id, String prénom, String nom, String adresse, String téléphone) {
         super();
         this.Id = id;
@@ -33,6 +35,8 @@ public class Utilisateur implements Serializable {
         this.Adresse = adresse;
         this.téléphone = téléphone;
     }
+
+    
     public long getId() {
         return Id;
     }
