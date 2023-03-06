@@ -5,6 +5,8 @@ import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 
 
@@ -21,7 +23,16 @@ public class Societe extends Utilisateur  {
 
     
     @OneToMany(mappedBy = "societe")
-    private List<DepartementSociete> DepartementSocietes;
+    protected static List<DepartementSociete> DepartementSocietes;
+    
+    @OneToMany
+    @JoinTable(
+            name = "OffreDeStage",
+            joinColumns ={ @JoinColumn(name = "id",referencedColumnName = "id")},
+            inverseJoinColumns = @JoinColumn(name = "idStage")
+
+    )
+    private List<Stage> stages;
 
 
     public Societe() {
@@ -29,7 +40,7 @@ public class Societe extends Utilisateur  {
     }
 
     public Societe(long id, String prénom, String nom, String adresse, String téléphone, String nom2,
-            String matricule_fiscale, long taille, String secteur, String domaine,String Url_logo) {
+            String matricule_fiscale, long taille, String secteur, String domaine,String Url_logo, List<DepartementSociete> departementSocietes2, List<Stage> stages2) {
         super(id, prénom, nom, adresse, téléphone);
         NomSociete = nom;
         Matricule_fiscale = matricule_fiscale;
