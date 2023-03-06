@@ -1,9 +1,15 @@
 package com.example.demo.Model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Societe extends Utilisateur  {
 
     private String NomSociete;
@@ -12,6 +18,11 @@ public class Societe extends Utilisateur  {
     private String Secteur;
     private String Domaine;
     private String Url_logo;
+
+    
+    @OneToMany(mappedBy = "societe")
+    private List<DepartementSociete> DepartementSocietes;
+
 
     public Societe() {
         super();
