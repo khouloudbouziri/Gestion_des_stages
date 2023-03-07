@@ -20,6 +20,7 @@ public class Utilisateur implements Serializable {
     private String Nom;
     private String Adresse;
     private String téléphone;
+    
 
 
     public Utilisateur() {
