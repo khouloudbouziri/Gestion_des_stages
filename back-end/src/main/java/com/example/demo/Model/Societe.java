@@ -1,9 +1,17 @@
 package com.example.demo.Model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Societe extends Utilisateur  {
 
     private String NomSociete;
@@ -13,12 +21,26 @@ public class Societe extends Utilisateur  {
     private String Domaine;
     private String Url_logo;
 
+    
+    @OneToMany(mappedBy = "societe")
+    protected static List<DepartementSociete> DepartementSocietes;
+    
+    @OneToMany
+    @JoinTable(
+            name = "OffreDeStage",
+            joinColumns ={ @JoinColumn(name = "id",referencedColumnName = "id")},
+            inverseJoinColumns = @JoinColumn(name = "idStage")
+
+    )
+    private List<Stage> stages;
+
+
     public Societe() {
         super();
     }
 
     public Societe(long id, String prénom, String nom, String adresse, String téléphone, String nom2,
-            String matricule_fiscale, long taille, String secteur, String domaine,String Url_logo) {
+            String matricule_fiscale, long taille, String secteur, String domaine,String Url_logo, List<DepartementSociete> departementSocietes2, List<Stage> stages2) {
         super(id, prénom, nom, adresse, téléphone);
         NomSociete = nom;
         Matricule_fiscale = matricule_fiscale;
