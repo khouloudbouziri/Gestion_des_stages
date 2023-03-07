@@ -11,29 +11,29 @@ public class Societe extends Utilisateur  {
     private long Taille;
     private String Secteur;
     private String Domaine;
-    private String Url_lego;
+    private String Url_logo;
 
     public Societe() {
         super();
     }
 
     public Societe(long id, String prénom, String nom, String adresse, String téléphone, String nom2,
-            String matricule_fiscale, long taille, String secteur, String domaine,String Url_lego) {
+            String matricule_fiscale, long taille, String secteur, String domaine,String Url_logo) {
         super(id, prénom, nom, adresse, téléphone);
         NomSociete = nom;
         Matricule_fiscale = matricule_fiscale;
         Taille = taille;
         Secteur = secteur;
         Domaine = domaine;
-        Url_lego=Url_lego;
+        Url_logo=Url_logo;
     }
 
-    public String getUrl_lego() {
-        return Url_lego;
+    public String getUrl_logo() {
+        return Url_logo;
     }
 
-    public void setUrl_lego(String url_lego) {
-        Url_lego = url_lego;
+    public void setUrl_logo(String url_logo) {
+        Url_logo = url_logo;
     }
 
     public String getNom() {
